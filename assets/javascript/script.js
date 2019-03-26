@@ -28,12 +28,20 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
             var results = response.data;
-            for (var j = 0; j < results.length; j++) {
-            var activityDiv = $("<div style='display: inline-block; margin: 0px 10px'; class='activityDiv'>");
+            for (var j = 0; j < results.length; j++) { 
+            var activityDiv = $("<div style='display: inline-block; margin: 0px 10px'>");
             var pDiv = $("<p>");
             var pDiv = $("<p>").text("Rating: " + results[j].rating);
             var activityImage = $("<img>");
+            activityImage.addClass("image");
             activityImage.attr('src',results[j].images.fixed_height_still.url);
+            activityImage.attr('data-state', 'still');
+            console.log('set still');
+            var stillImage = activityImage.attr('data-still',results[j]
+            .images.fixed_height_still.url);
+            console.log(stillImage);
+            var animateImage = activityImage.attr('data-animate',results[j].images.fixed_height.url);
+            console.log(animateImage);
             activityDiv.append(activityImage);
             activityDiv.append(pDiv);
             $("#gifs-appear-here").prepend(activityDiv);
@@ -55,19 +63,21 @@ $(document).ready(function() {
     });
 
   // FUNCTION to Animate/Still GIPHY on button click
-  $("body").on("click", "activityDiv", function () {
-    let state = $(this).attr("data-state");
-    if (state === "still") {
-        let animate = $(this).attr("data-animate");
-        $(this).attr("src", animate);
-        $(this).attr("data-state", "animate");
-        state = $(this).attr("data-state");
-    } else {
-        let still = $(this).attr("data-still");
-        $(this).attr("src", still);
-        $(this).attr("data-state", "still");
-        state = $(this).attr("data-state");
-    }
-  });
+     $("body").on("click", ".image", function () {
+      let state = $(this).attr("data-state");
+      if (state === 'still') {
+          let animate = $(this).attr("data-animate");
+          $(this).attr("src", animate);
+          $(this).attr("data-state", "animate");
+          state = $(this).attr("animate");
+          console.log('animate');
+      } else {
+          let still = $(this).attr("data-still");
+          $(this).attr("src", still);
+          $(this).attr("data-state", "still");
+          state = $(this).attr("data-state", "still");
+          console.log('still');
+      }
+    });
   
 }); //closing document write function
