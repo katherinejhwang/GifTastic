@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Fun activities you can do outdoors!</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <!-- buttons go here -->
+  <button data-funstuff="hiking">hiking</button>
+  <button data-funstuff="triathlons">triathlons</button>
+  <button data-funstuff="swimming">swimming</button>
+  <button data-funstuff="kayaking">kayaking</button>
+  <button data-funstuff="biking">biking</button>
+  <button data-funstuff="rock-climbing">rock climbing</button>
+  <button data-funstuff="bouldering">bouldering</button>
+  <button data-funstuff="camping">camping</button>
+  <button data-funstuff="horseback-riding">horseback riding</button>
+  <button data-funstuff="ziplining">ziplining</button>
+  <button data-funstuff="slacklining">slacklining</button>
+  <button data-funstuff="stargazing">stargazing</button>
+
+
+  <div id="gifs-appear-here">
+  </div>
+
+  <form id="search-from">
+    <label for="searchinput">Add in your search</label>
+    <input type="text" id="search-input"><br>
+    <input type="submit">
+  </div>
+
+  <!-- Script to populate gifs upon button click-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $("button").on("click", function addButton() {
+      var funstuff = $(this).attr("data-funstuff");
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        funstuff + "&api_key=EAOLvM8XoVuxWGsU6hBcEtl3rtl6Nkl8&limit=10";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      })
+      .then(function(response) {
+          console.log(response);
+          var results = response.data;
+
+          for (var i = 0; i < results.length; i++) {
+            var gifDiv = $("<div>");
+
+            var rating = results[i].rating;
+
+            var funstuff = $("<p>").text("Rating: " + rating);
+
+            var funstuffImage = $("<img>");
+            funstuffImage.attr("src", results[i].images.fixed_height.url);
+
+            gifDiv.prepend(funstuff);
+            gifDiv.prepend(funstuffImage);
+
+            $("#gifs-appear-here").prepend(gifDiv);
+          }
+        });
+
+        // Script to adjust animate/still on click
+
+
+        //Script for new search term to be added
+        $("#search").on('click', addButton () {
+              addButton();
+          }
+
+
+
+    });
+  </script>
+</body>
+
+</html>

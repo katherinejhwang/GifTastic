@@ -1,0 +1,54 @@
+body {
+  background-image: url('../images/headerimage.jpg');
+  background-size: 100%;
+}
+
+div, input {
+      margin: 10px 0px;
+    }
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  text-align: center;
+  background:lightgoldenrodyellow;
+  border: 1px solid white;
+  padding: 5px;
+  line-height: 5rem;
+  border-radius: 10px;
+}
+
+button {
+  margin: 10px;
+  font-family: 'Playfair Display', serif; 
+  background: #0e9bbe;
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-size: 16px;
+}
+
+form {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+#add-activity {
+  margin: 10px;
+  font-family: 'Playfair Display', serif; 
+  background: #ffa14b;
+  border-radius: 10px;
+  padding: 5px 15px;
+  color: white;
+}
+
+p {
+  font-family: 'Playfair Display', serif; 
+}
+
+.img {
+  display: inline-block;
+}
+
+#gifs-appear-here {
+  display: inline-block;
+}
